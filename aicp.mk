@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017 The AICP Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,11 +21,28 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit device configuration
 $(call inherit-product, device/xiaomi/libra/device.mk)
 
-# Device identifier. This must come after all inclusions
-PRODUCT_NAME := full_libra
-PRODUCT_DEVICE := libra
+# Inherit some common AICP stuff.
+$(call inherit-product, vendor/aicp/config/common.mk)
+$(call inherit-product, vendor/aicp/config/common_full_phone.mk
 
+# Device identifier. This must come after all inclusions
+PRODUCT_NAME := aicp_libra
+PRODUCT_DEVICE := libra
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi-4c
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RESTRICT_VENDOR_FILES := false
+
+TARGET_VENDOR := Xiaomi
+
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+
+# AICP Device Maintainers
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    DEVICE_MAINTAINERS="Demon000 (Cosmin Tanislav) & csolanol (Carlos Solano)"
+
+TARGET_OTA_ASSERT_DEVICE := libra
